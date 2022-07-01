@@ -16,14 +16,30 @@ function Form() {
         fetchData();
       }, []);
 
+      const handleChange = (event) => {
+        setSelected(event.target.value);
+      };
+      
+      const saveBtn = (e) =>{
+          e.preventDefault();
+          console.log(selected);
+      }
+
 
     return (
         <div>
-            <select>
+            <form>
+            <select onChange={handleChange} value={selected}>
+            <option value="">Select Company Name</option>
+
                 {CompanyList.map(company =>
-                    <option>{company.name}</option>
+                    <option key={company.id} value={company.name}>{company.name}</option>
                     )}
             </select>
+
+            <br/>
+            <button className="btn btn-primary" onClick={saveBtn}>Save</button>
+            </form>
         </div>
     )
 }
